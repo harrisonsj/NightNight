@@ -13,12 +13,18 @@ public extension UIView {
         get { return objc_getAssociatedObject(self, &NightKeys.backgroundColor) as? UIColor }
         set {
             objc_setAssociatedObject(self, &NightKeys.backgroundColor, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            if let mixedColor = MixedColor(normalBackgroundColor, night: newValue){
+                objc_setAssociatedObject(self, &Keys.backgroundColor, mixedColor, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            }
         }
     }
     @IBInspectable public var normalBackgroundColor: UIColor? {
         get { return objc_getAssociatedObject(self, &NormalKeys.backgroundColor) as? UIColor }
         set {
             objc_setAssociatedObject(self, &NormalKeys.backgroundColor, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            if let mixedColor = MixedColor(newValue, night: nightBackgroundColor){
+                objc_setAssociatedObject(self, &Keys.backgroundColor, mixedColor, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            }
         }
     }
 

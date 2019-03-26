@@ -43,6 +43,12 @@ public class MixedColor: MixedResource<UIColor> {
         let nightColor = UIColor(rgb: night)
         super.init(normal: normalColor, night: nightColor)
     }
+    public init?(_ normal:UIColor?, night:UIColor?){
+        guard let normal = normal, let night = night else{
+            return nil
+        }
+        super.init(normal: normal, night: night)
+    }
 }
 
 public class MixedStatusBarStyle: MixedResource<UIStatusBarStyle> {
