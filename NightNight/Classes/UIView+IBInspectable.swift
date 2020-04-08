@@ -161,7 +161,8 @@ public extension UIButton{
         set {
             objc_setAssociatedObject(self, &NightKeys.textColor, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             if let mixedColor = MixedColor(normalTextColor, night: newValue){
-                titleLabel?.mixedTextColor = mixedColor
+                //titleLabel?.mixedTextColor = mixedColor
+                setMixedTitleColor(mixedColor, forState: UIControl.State())
             }
         }
     }
@@ -170,7 +171,7 @@ public extension UIButton{
         set {
             objc_setAssociatedObject(self, &NormalKeys.textColor, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             if let mixedColor = MixedColor(newValue, night: nightTextColor){
-                titleLabel?.mixedTextColor = mixedColor
+                setMixedTitleColor(mixedColor, forState: UIControl.State())
             }
         }
     }
